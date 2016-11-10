@@ -1,0 +1,440 @@
+/*############################################################################################################################
+
+Liam Chowdhury - C1642415	
+
+CMT112
+
+CSS:
+
+1.0 Navigation
+2.0 Body Elements
+2.1 index.html
+2.2 Episode Single Pages
+3.0 Responsive CSS
+############################################################################################################################*/
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:200');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Work Sans', sans-serif; /*Consistent font throughout site, except nav*/
+  color: white;
+}
+
+body {
+  overflow-x: hidden; /*No overflow for when nav appears */
+}
+
+/*############################################################################################################################
+
+1.0 Navigation
+
+Code from https://www.sitepoint.com/pure-css-off-screen-navigation-menu/ was implemented throughout
+the navigation for responsiveness and menu style.
+
+############################################################################################################################*/
+
+nav ul {
+  /* critical sizing and position styles */
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  background: white;
+}
+
+nav li {
+  width: 200px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+nav li a {
+  display: block;
+  padding: 1em;
+  background: white;
+  font-family: "Segoe UI";
+  color: black;
+  font-size: 1.2em;
+  text-decoration: none;
+  transition: color 0.2s, background 0.5s;
+}
+
+.epmenu{
+	font-size: 0.75em;
+	height: 35px;
+}
+
+nav p{
+	position: fixed;
+	bottom: 0;
+	display: block;
+	font-family: "Segoe UI";
+	color: black;
+	font-size: 0.7em;
+	padding: 1em;
+	text-align: center;
+}
+
+nav li a:hover {
+  color: #bc9747;
+  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(188,151,71,0.27) 100%);
+}
+
+/* Site Wrapper - Everything that isn't navigation */
+.site-wrap {
+  /* Critical position and size styles */
+  background-color: black; /* Needs a background or else the nav will show through */
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  margin-top: 0;
+  background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);
+  background-size: 200%;
+}
+
+/* Nav Trigger */
+.nav-trigger {
+  /* critical styles - hide the checkbox input */
+  position: fixed;
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+  /* critical positioning styles */
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  z-index: 2;
+
+  /* non-critical apperance styles */
+  height: 10%;
+  width: 10%;
+  cursor: pointer;
+  background-image: url("images/icon-menu.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Make the Magic Happen */
+.nav-trigger + label, .site-wrap {
+  transition: left 0.2s;
+}
+
+.nav-trigger:checked + label {
+  left: 215px;
+}
+
+.nav-trigger:checked ~ .site-wrap {
+  left: 200px;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+/*############################################################################################################################
+
+2.0 Body Elements
+
+index.html - #introduction, #movies, #tv, #timeline
+
+episode# id's are for individual pages
+
+
+############################################################################################################################*/
+
+/*########################
+2.1 index.html
+#########################*/
+
+/*http://stackoverflow.com/questions/10422105/add-text-above-html5-video  for .overlay, allows for Star Wars logo to be positioned*/
+.overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  z-index:1;
+  text-align: center;
+}
+
+/*For all p elements throughout the website, giving sufficient space for text.*/
+
+p{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#introduction{
+  margin: 0;
+  padding: 0;
+}
+
+#introduction img{
+  width: 25%;
+  margin-top: 5%;
+  margin-bottom: 0;
+}
+
+#introduction video {
+  width: 100%;
+  overflow: hidden;
+}
+
+#movies {
+  background: #6a717c;
+  color: white;
+  padding: 5% 5% 5% 7.5%;
+}
+
+#movies figure{
+  padding-top: 5%;
+}
+
+#movies img{
+  width: 11.5%;
+}
+
+#movies img:hover{
+	opacity: 0.5;
+}
+
+#tv {
+ background: url('images/tv-bg.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: bottom right;
+  background-color: #005f73;
+  color: white;
+  padding: 5% 5% 16% 7.5%;
+}
+
+#tv p{
+	padding-bottom: 40px;
+}
+
+#tv figure{
+	text-align: center;
+}
+
+#tv img{
+  margin: 0;
+  padding: 0;
+  width: 20%;
+}
+
+#timeline {
+ background: url('images/timeline-bg.jpg');
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-position: top right;
+  background-color: #220207;
+  color: white;
+  padding: 5% 5% 5% 7.5%;
+}
+
+#timeline p{
+	padding-right: 35%;
+}
+
+#timeline img{
+  width: 75%;
+  display: block;
+  margin:0 auto;
+}
+
+/*########################
+2.2 Episode Single Pages
+#########################*/
+
+/*Background image css implemented from https://css-tricks.com/perfect-full-page-background-image/. */
+
+#episode1{
+ background: url('images/episode1.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode2{
+ background: url('images/episode2.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode3{
+ background: url('images/episode3.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode4{
+ background: url('images/episode4.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode5{
+ background: url('images/episode5.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode6{
+ background: url('images/episode6.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#episode7{
+ background: url('images/episode7.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #fce9da;
+  color: black;
+  padding: 10% 25% 10% 40%;
+}
+
+#rogueone{
+ background: url('images/rogueone.jpg') no-repeat top right fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: black;
+  color: black;
+  padding: 5% 5% 17% 7.5%;
+}
+
+/*Positioning of nomination/trophy icons.*/
+
+.awards{
+  padding-left: 25%;
+}
+
+#rogueone .awards{
+	padding-left: 10%;
+}
+
+.awardicon{
+  height: 50px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+}
+
+.awardtext{
+  vertical-align: middle;
+  padding: 5px 5px 5px 5px;
+  width: 25%;
+}
+
+/*############################################################################################################################
+
+3.0 Responsive CSS
+
+Media query from: http://www.w3schools.com/cssref/css3_pr_mediaquery.asp
+
+
+########################################################################################################################### */
+
+
+@media screen and (max-width: 850px) {
+	label[for="nav-trigger"] {
+		/* critical positioning styles */
+		position: fixed;
+		left: 10px;
+		top: 10px;
+		z-index: 2;
+
+		/* non-critical apperance styles */
+		height: 10%;
+		width: 10%;
+		cursor: pointer;
+		background-image: url("images/icon-menu.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+}
+	
+	#introduction img{
+		width: 40%;
+		margin-top: 2.5%;
+	}
+
+	#introduction video {
+		overflow: hidden;
+	}
+	
+	#movies img{
+		width: 23%;
+	}
+	
+	#movies, #tv, #timeline{
+		padding-left: 12%;
+	}
+	
+	#timeline{
+		padding-bottom: 10%;
+	}
+	
+	#timeline h2{
+		padding-right: 40%;
+	}
+	
+	#timeline p{
+		padding-right: 2%;
+	}
+	
+	#timeline img{
+		position: relative;
+		width: 100%;
+	}
+	
+	#episode1, #episode2, #episode3, #episode4, #episode5, #episode6, #episode7{
+		padding: 15% 5% 5% 10%;
+	}
+	
+	iframe{
+		width: 100%;
+	}
+}
